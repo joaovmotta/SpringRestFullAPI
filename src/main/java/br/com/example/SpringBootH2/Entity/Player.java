@@ -32,6 +32,17 @@ public class Player {
     @Column(name = "height")
     private double height;
 
+    @Column(name = "sport")
+    private String sport;
+
+    public String getSport() {
+        return sport;
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
+    }
+
     public Long getId() {
         return id;
     }
