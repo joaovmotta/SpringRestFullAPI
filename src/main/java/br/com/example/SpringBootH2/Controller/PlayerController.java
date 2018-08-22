@@ -23,7 +23,7 @@ public class PlayerController {
     @GetMapping("/player")
     @ApiOperation(value = "Return a list of players.")
     public HttpEntity<List<Player>> getAll() {
-        return ResponseEntity.ok(this.playerService.getAll());
+        return ResponseEntity.ok(this.playerService.findAll());
     }
 
     @GetMapping("/player/{id}")
