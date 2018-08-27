@@ -1,10 +1,8 @@
 package br.com.example.SpringBootH2;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -17,10 +15,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 
 @SpringBootApplication
-@Configuration
-@EnableAutoConfiguration
 @EnableSwagger2
-public class SpringBootH2Application {
+    public class SpringBootH2Application {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootH2Application.class, args);
     }

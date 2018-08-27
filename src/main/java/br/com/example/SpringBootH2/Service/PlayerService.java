@@ -2,6 +2,7 @@ package br.com.example.SpringBootH2.Service;
 
 import br.com.example.SpringBootH2.Entity.Player;
 import br.com.example.SpringBootH2.Exception.PlayerNotFoundException;
+import br.com.example.SpringBootH2.Mapper.PlayerMapper;
 import br.com.example.SpringBootH2.Repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,9 @@ public class PlayerService {
 
     @Autowired
     private PlayerRepository playerRepository;
+
+    @Autowired
+    private PlayerMapper playerMapper;
 
     public List<Player> findAll() {
         return (List<Player>) this.playerRepository.findAll();
