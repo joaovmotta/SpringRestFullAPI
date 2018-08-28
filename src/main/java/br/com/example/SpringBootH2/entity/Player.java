@@ -1,4 +1,4 @@
-package br.com.example.SpringBootH2.Entity;
+package br.com.example.SpringBootH2.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;

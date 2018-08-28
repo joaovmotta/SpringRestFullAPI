@@ -1,9 +1,10 @@
-package br.com.example.SpringBootH2.Service;
+package br.com.example.SpringBootH2.service;
 
-import br.com.example.SpringBootH2.Entity.Player;
-import br.com.example.SpringBootH2.Exception.PlayerNotFoundException;
-import br.com.example.SpringBootH2.Mapper.PlayerMapper;
-import br.com.example.SpringBootH2.Repository.PlayerRepository;
+import br.com.example.SpringBootH2.entity.Player;
+import br.com.example.SpringBootH2.exception.PlayerNotFoundException;
+import br.com.example.SpringBootH2.mapper.PlayerMapper;
+import br.com.example.SpringBootH2.repository.PlayerRepository;
+import br.com.example.SpringBootH2.request.PlayerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,8 @@ public class PlayerService {
         return (List<Player>) this.playerRepository.findAll();
     }
 
-    public Long insert(Player player) {
-        return this.playerRepository.save(player).getId();
+    public Long insert(PlayerRequest player) {
+        return this.playerRepository.save(this.playerMapper.requestToPlayer(player)).getId();
     }
 
     public Player findById(Long id) {

@@ -1,7 +1,7 @@
-package br.com.example.SpringBootH2.Mapper;
+package br.com.example.SpringBootH2.mapper;
 
-import br.com.example.SpringBootH2.Entity.Player;
-import br.com.example.SpringBootH2.Request.PlayerRequest;
+import br.com.example.SpringBootH2.entity.Player;
+import br.com.example.SpringBootH2.request.PlayerRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

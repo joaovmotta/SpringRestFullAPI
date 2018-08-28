@@ -1,4 +1,4 @@
-package br.com.example.SpringBootH2.Exception;
+package br.com.example.SpringBootH2.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
