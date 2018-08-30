@@ -2,7 +2,8 @@ package br.com.example.SpringBootH2.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Getter @Setter
 public class Player {
 
     @Id

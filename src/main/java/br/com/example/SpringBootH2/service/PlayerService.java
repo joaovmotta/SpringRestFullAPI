@@ -1,7 +1,7 @@
 package br.com.example.SpringBootH2.service;
 
 import br.com.example.SpringBootH2.entity.Player;
-import br.com.example.SpringBootH2.exception.PlayerNotFoundException;
+import br.com.example.SpringBootH2.handler.exception.PlayerNotFoundException;
 import br.com.example.SpringBootH2.mapper.PlayerMapper;
 import br.com.example.SpringBootH2.repository.PlayerRepository;
 import br.com.example.SpringBootH2.request.PlayerRequest;

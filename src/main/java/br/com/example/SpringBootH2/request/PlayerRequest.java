@@ -2,15 +2,18 @@ package br.com.example.SpringBootH2.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlayerRequest {
@@ -23,11 +26,11 @@ public class PlayerRequest {
     private LocalDate birthday;
 
     @NotNull(message = "The field weight is required,")
-    @Min(50)
+    @Min(value = 50, message = "The mininum weight required is 50KG")
     private double weight;
 
     @NotNull(message = "The field height is required,")
-    @Min(150)
+    @Min(value = 150, message = "The minimum height required is 150CM")
     private double height;
 
     @NotNull(message = "The field sport is required,")
