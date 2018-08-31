@@ -13,16 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import static br.com.example.SpringBootH2.representation.DefaultErrorMessages.*;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
@@ -71,7 +70,7 @@ public class PlayerEndPointTest {
     public void whenGetPlayerByIdShouldReturnOnlyOnePlayerAndStatusOK() throws Exception {
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get(API_URI.concat("/1"))
+                MockMvcRequestBuilders.get(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("3").toUriString())
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists());
@@ -107,7 +106,8 @@ public class PlayerEndPointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonObject.toString())
         )
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value(FUTURE_OR_PRESENT_DATE));
     }
 
     @Test
@@ -124,7 +124,8 @@ public class PlayerEndPointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonObject.toString())
         )
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value(HEIGHT_LESS_THAN_ONE_HUNDRED_AND_FIFITY));
     }
 
     @Test
@@ -141,7 +142,8 @@ public class PlayerEndPointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonObject.toString())
         )
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value(WEIGHT_LESS_THAN_FIFITY));
     }
 
     @Test
@@ -157,6 +159,69 @@ public class PlayerEndPointTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonObject.toString())
         )
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value(REQUIRED_FIELD_IS_NULL));
+    }
+
+    @Test
+    public void whenGetPlayerByNonexistentIdShouldReturnNotFound() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("20").toUriString())
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value(RESOURCE_NOT_FOUND));
+    }
+
+    @Test
+    public void whenDeletePlayerByIdShouldReturnStatusOK() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("1").toUriString())
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void whenDeletePlayerByNonexistentIdShouldReturnNotFound() throws Exception {
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("20").toUriString())
+                        .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value(RESOURCE_NOT_FOUND));
+    }
+
+    @Test
+    public void whenUpdatePlayerByNonexistentIdShouldReturnNotFound() throws Exception {
+
+        String jsonFileRequest = FileUtil.fetchScript(JSON_FILE_DIRECTORY);
+
+        JSONObject jsonObject = new JSONObject(jsonFileRequest);
+        mockMvc.perform(
+                MockMvcRequestBuilders.put(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("20").toUriString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonObject.toString())
+        )
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value(RESOURCE_NOT_FOUND));
+    }
+
+    @Test
+    public void whenUpdatePlayerByIdShouldReturnStatusOk() throws Exception {
+
+        String jsonFileRequest = FileUtil.fetchScript(JSON_FILE_DIRECTORY);
+
+        JSONObject jsonObject = new JSONObject(jsonFileRequest);
+        mockMvc.perform(
+                MockMvcRequestBuilders.put(UriComponentsBuilder.fromHttpUrl(API_URI).pathSegment("2").toUriString())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonObject.toString())
+        )
+                .andExpect(status().isOk())
+                .andExpect(header().exists(LOCATION));
     }
 }

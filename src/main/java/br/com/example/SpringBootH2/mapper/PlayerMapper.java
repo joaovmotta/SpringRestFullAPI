@@ -1,10 +1,13 @@
 package br.com.example.SpringBootH2.mapper;
 
 import br.com.example.SpringBootH2.entity.Player;
-import br.com.example.SpringBootH2.request.PlayerRequest;
+import br.com.example.SpringBootH2.representation.request.PlayerRequest;
+import br.com.example.SpringBootH2.representation.response.PlayerResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PlayerMapper {
@@ -13,4 +16,6 @@ public interface PlayerMapper {
             @Mapping(target = "id", ignore = true)
     })
     Player requestToPlayer(PlayerRequest request);
+
+    List<PlayerResponse> playerToResponse(List<Player> list);
 }

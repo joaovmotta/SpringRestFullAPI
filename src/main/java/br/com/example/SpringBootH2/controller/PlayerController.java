@@ -1,7 +1,8 @@
 package br.com.example.SpringBootH2.controller;
 
 import br.com.example.SpringBootH2.entity.Player;
-import br.com.example.SpringBootH2.request.PlayerRequest;
+import br.com.example.SpringBootH2.representation.request.PlayerRequest;
+import br.com.example.SpringBootH2.representation.response.PlayerResponse;
 import br.com.example.SpringBootH2.service.PlayerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +32,7 @@ public class PlayerController {
 
     @GetMapping("/player")
     @ApiOperation(value = "Return a list of players.")
-    public HttpEntity<List<Player>> getAll() {
+    public HttpEntity<List<PlayerResponse>> getAll() {
         return ResponseEntity.ok(this.playerService.findAll());
     }
 
@@ -57,8 +58,8 @@ public class PlayerController {
 
     @PutMapping("/player/{id}")
     @ApiOperation(value = "Update data from a player according to id")
-    public HttpEntity update(@PathVariable Long id, @RequestBody Player player) {
+    public HttpEntity update(@PathVariable Long id,@Valid @RequestBody PlayerRequest player) {
         this.playerService.update(player, id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().location(URI.create("http://localhost:8080/api/player/".concat(id.toString()))).build();
     }
 }
