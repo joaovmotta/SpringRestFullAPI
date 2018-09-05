@@ -16,7 +16,7 @@ public class PlayerResponse {
 
     private String name;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR")
+    @JsonFormat(pattern = "dd/MM/yyyy", locale = "pt-BR")
     private LocalDate birthday;
 
     private double weight;

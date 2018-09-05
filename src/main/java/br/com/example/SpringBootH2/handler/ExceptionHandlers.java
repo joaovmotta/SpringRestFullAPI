@@ -1,6 +1,6 @@
 package br.com.example.SpringBootH2.handler;
 
-import br.com.example.SpringBootH2.handler.exception.PlayerNotFoundException;
+import br.com.example.SpringBootH2.handler.exception.ResourceNotFoundException;
 import com.google.common.collect.ImmutableMap;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import static br.com.example.SpringBootH2.representation.DefaultErrorMessages.RE
 @RestControllerAdvice
 public class ExceptionHandlers extends DefaultHandlerExceptionResolver {
 
-    @ExceptionHandler({PlayerNotFoundException.class, EmptyResultDataAccessException.class})
+    @ExceptionHandler({ResourceNotFoundException.class, EmptyResultDataAccessException.class})
     private ResponseEntity resourceNotFoundHandler(RuntimeException ex) {
         return ResponseEntity.status(404).body(ImmutableMap.of("message", RESOURCE_NOT_FOUND));
     }

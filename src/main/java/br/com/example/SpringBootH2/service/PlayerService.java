@@ -1,7 +1,7 @@
 package br.com.example.SpringBootH2.service;
 
 import br.com.example.SpringBootH2.entity.Player;
-import br.com.example.SpringBootH2.handler.exception.PlayerNotFoundException;
+import br.com.example.SpringBootH2.handler.exception.ResourceNotFoundException;
 import br.com.example.SpringBootH2.mapper.PlayerMapper;
 import br.com.example.SpringBootH2.repository.PlayerRepository;
 import br.com.example.SpringBootH2.representation.request.PlayerRequest;
@@ -29,7 +29,7 @@ public class PlayerService {
     }
 
     public Player findById(Long id) {
-        return this.playerRepository.findById(id).orElseThrow(PlayerNotFoundException::new);
+        return this.playerRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     public void delete(Long id) {
@@ -42,7 +42,7 @@ public class PlayerService {
             playerEntity.setId(id);
             this.playerRepository.save(playerEntity);
         } else {
-            throw new PlayerNotFoundException();
+            throw new ResourceNotFoundException();
         }
     }
 }
