@@ -1,6 +1,6 @@
 package br.com.example.SpringBootH2.service;
 
-import br.com.example.SpringBootH2.entity.Player;
+import br.com.example.SpringBootH2.representation.entity.Player;
 import br.com.example.SpringBootH2.representation.request.PlayerRequest;
 import br.com.example.SpringBootH2.representation.response.PlayerResponse;
 
