@@ -1,2 +1,2 @@
-2018-09-05 09:24:40,382 INFO [Thread-4] o.mockserver.mockserver.MockServer [MockServer.java:56] MockServer starting up on port: 1080
-2018-09-05 09:24:45,888 WARN [Thread-9] o.s.b.f.s.DisposableBeanAdapter [DisposableBeanAdapter.java:265] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-197]
+2018-09-13 08:51:27,352 INFO [Thread-1] o.mockserver.mockserver.MockServer [MockServer.java:56] MockServer starting up on port: 1080
+2018-09-13 08:51:34,875 WARN [Thread-6] o.s.b.f.s.DisposableBeanAdapter [DisposableBeanAdapter.java:265] Invocation of destroy method failed on bean with name 'inMemoryDatabaseShutdownExecutor': org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-197]

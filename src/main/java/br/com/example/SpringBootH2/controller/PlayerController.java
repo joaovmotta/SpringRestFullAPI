@@ -3,7 +3,7 @@ package br.com.example.SpringBootH2.controller;
 import br.com.example.SpringBootH2.entity.Player;
 import br.com.example.SpringBootH2.representation.request.PlayerRequest;
 import br.com.example.SpringBootH2.representation.response.PlayerResponse;
-import br.com.example.SpringBootH2.service.PlayerService;
+import br.com.example.SpringBootH2.service.PlayerServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ import java.util.List;
 public class PlayerController {
 
     @Autowired
-    private PlayerService playerService;
+    private PlayerServiceImpl playerService;
 
     @GetMapping("/player")
     @ApiOperation(value = "Return a list of players.")

@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import static br.com.example.SpringBootH2.representation.DefaultErrorMessages.*;
+import static br.com.example.SpringBootH2.infra.constants.DefaultErrorMessages.*;
 import static org.mockserver.integration.ClientAndServer.startClientAndServer;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

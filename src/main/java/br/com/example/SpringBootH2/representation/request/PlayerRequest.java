@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-import static br.com.example.SpringBootH2.representation.DefaultErrorMessages.*;
+import static br.com.example.SpringBootH2.infra.constants.DefaultErrorMessages.*;
 
 @Getter
 @Setter

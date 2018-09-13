@@ -1,4 +1,4 @@
-package br.com.example.SpringBootH2.handler.exception;
+package br.com.example.SpringBootH2.infra.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 }

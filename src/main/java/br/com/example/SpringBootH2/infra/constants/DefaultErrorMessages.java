@@ -1,4 +1,4 @@
-package br.com.example.SpringBootH2.representation;
+package br.com.example.SpringBootH2.infra.constants;
 
 public class DefaultErrorMessages {
 
